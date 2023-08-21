@@ -1,0 +1,444 @@
+credit card churn 
+
+problem statement: -  
+
+
+
+Customer churn is a business term expression which describes loss of customers.
+Firms invest in order not to lose their customers. Marketing departments continu-
+ously investigate the behavior of their existing customers and potential customers
+to understand the underlying causes of churn.
+
+columns details 
+
+ 	0   Attrition_Flag            10127 non-null  int64    prediction /label column
+	1   Customer_Age              10127 non-null  int64  
+ 	2   Gender                    10127 non-null  object 
+ 	3   Dependent_count           10127 non-null  int64  
+ 	4   Education_Level           8608 non-null   object 
+ 	5   Marital_Status            9378 non-null   object 
+ 	6   Income_Category           9015 non-null   object 
+ 	7   Card_Category             10127 non-null  object 
+ 	8   Months_on_book            10127 non-null  int64  
+ 	9   Total_Relationship_Count  10127 non-null  int64  
+ 	10  Months_Inactive_12_mon    10127 non-null  int64  
+ 	11  Contacts_Count_12_mon     10127 non-null  int64  
+ 	12  Credit_Limit              10127 non-null  float64
+ 	13  Total_Revolving_Bal       10127 non-null  int64  
+ 	14  Avg_Open_To_Buy           10127 non-null  float64
+ 	15  Total_Amt_Chng_Q4_Q1      10127 non-null  float64
+ 	16  Total_Trans_Amt           10127 non-null  int64  
+ 	17  Total_Trans_Ct            10127 non-null  int64  
+ 	18  Total_Ct_Chng_Q4_Q1       10127 non-null  float64
+ 	19  Avg_Utilization_Ratio     10127 non-null  float64
+ 	20  Unnamed: 21               0 non-null      float64
+
+
+Missing Values
+
+
+	CLIENTNUM                     0.000000     
+		## drop column
+
+	Attrition_Flag                0.000000	  
+ 	## prediction columns  
+	-- imbalance data 
+		16 % class 0
+		84 % class 1
+
+	Customer_Age                  0.000000 
+
+		-- Outliers are present but very less
+
+	Gender                        0.000000
+
+	-- categorical convert to numerical
+
+ 		'F': 1, 
+  		'M': 0
+
+	Dependent_count               0.000000
+
+	-- numeric Data 
+
+	Education_Level              14.999506
+
+	-- 15 % missing values present 
+
+	-- categorical data required label encoding 
+		ordinal data 
+
+	-- 'Graduate': 3,
+   		'High School': 1,
+   		'Uneducated': 0,
+   		'College': 2,
+   		'Post-Graduate': 4,
+   		'Doctorate': 5
+
+	-- Missing Value >> 
+
+	Marital_Status                7.396070
+
+	-- categorical dara niminal data 
+   	-- label encoding is used
+
+	Income_Category              10.980547
+
+	-- categorical data ordinal data 
+	-- label encoding used
+
+	Less than $40K    3561    0
+	$40K - $60K       1790    1 
+	$80K - $120K      1535    2 
+	$60K - $80K       1402    3 
+	$120K +            727    4
+
+
+	Card_Category                 0.000000
+
+	-- categorical Data (ordinal data)
+	-- label encoding is used
+
+	Blue        9436	0
+	Silver       555	1	
+	Gold         116	2
+	Platinum      20	3
+
+
+	Months_on_book                0.000000
+
+	-- numeric data 
+
+	Total_Relationship_Count      0.000000
+
+	-- numeric data
+
+	Months_Inactive_12_mon        0.000000
+
+	-- numeric data
+
+	Contacts_Count_12_mon         0.000000
+
+	-- numeric data
+
+	Credit_Limit                  0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Total_Revolving_Bal           0.000000
+
+	-- numeric Data 
+	-- no outliers
+
+	Avg_Open_To_Buy               0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Total_Amt_Chng_Q4_Q1          0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Total_Trans_Amt               0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Total_Trans_Ct                0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Total_Ct_Chng_Q4_Q1           0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+	Avg_Utilization_Ratio         0.000000
+
+	-- numeric Data 
+	-- outliers present
+
+
+
+	## Model evalution 
+
+	1. logistic regression 
+
+	-- testing data 
+
+  
+	Accuracy Score :  0.8706811451135242
+**********************************************************************
+Confusion Matrix :
+ [[ 103  222]
+ [  40 1661]]
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.72      0.32      0.44       325
+         1.0       0.88      0.98      0.93      1701
+
+    accuracy                           0.87      2026
+   macro avg       0.80      0.65      0.68      2026
+weighted avg       0.86      0.87      0.85      2026
+
+-- training data
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+
+Accuracy Score :  0.8758178002715714
+**********************************************************************
+Confusion Matrix :
+ [[ 439  863]
+ [ 143 6656]]
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.75      0.34      0.47      1302
+         1.0       0.89      0.98      0.93      6799
+
+    accuracy                           0.88      8101
+   macro avg       0.82      0.66      0.70      8101
+weighted avg       0.86      0.88      0.86      8101  
+
+
+####################################################################################
+######################Decision Tree Algorithm ######################################
+####################################################################################
+
+## Desicion tree algorithm
+
+Accuracy Score :  0.9378084896347483
+**********************************************************************
+Confusion Matrix :
+ [[ 256   69]
+ [  57 1644]]
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.82      0.79      0.80       325
+         1.0       0.96      0.97      0.96      1701
+
+    accuracy                           0.94      2026
+   macro avg       0.89      0.88      0.88      2026
+weighted avg       0.94      0.94      0.94      2026
+
+## training Data Eavalution
+
+Accuracy Score :  1.0
+**********************************************************************
+Confusion Matrix :
+ [[1302    0]
+ [   0 6799]]
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00      1302
+         1.0       1.00      1.00      1.00      6799
+
+    accuracy                           1.00      8101
+   macro avg       1.00      1.00      1.00      8101
+weighted avg       1.00      1.00      1.00      8101
+
+
+
+__________________________________________________________________________
+
+- overfittion is occure in DT
+- to avoid overfitting hyperparameter tuning
+
+##############################################################################
+		Decision Tree With Hyperparameter Tuning
+##############################################################################
+
+Testing Data Evalution
+
+Accuracy Score :  0.947680157946693
+**********************************************************************
+Confusion Matrix :
+ [[ 281   44]
+ [  62 1639]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.82      0.86      0.84       325
+         1.0       0.97      0.96      0.97      1701
+
+    accuracy                           0.95      2026
+   macro avg       0.90      0.91      0.90      2026
+weighted avg       0.95      0.95      0.95      2026
+
+**********************************************************************
+
+-- Training Data Evalution
+
+Accuracy Score :  0.9728428589063078
+**********************************************************************
+Confusion Matrix :
+ [[1201  101]
+ [ 119 6680]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.91      0.92      0.92      1302
+         1.0       0.99      0.98      0.98      6799
+
+    accuracy                           0.97      8101
+   macro avg       0.95      0.95      0.95      8101
+weighted avg       0.97      0.97      0.97      8101
+
+**********************************************************************
+
+
+##############################################################################
+		Decision Tree With Pruning
+##############################################################################
+
+-- Testing data evalution
+
+Accuracy Score :  0.9496544916090819
+**********************************************************************
+Confusion Matrix :
+ [[ 271   54]
+ [  48 1653]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.85      0.83      0.84       325
+         1.0       0.97      0.97      0.97      1701
+
+    accuracy                           0.95      2026
+   macro avg       0.91      0.90      0.91      2026
+weighted avg       0.95      0.95      0.95      2026
+
+**********************************************************************
+
+-- Training Data Evalution
+Accuracy Score :  0.9672879891371435
+**********************************************************************
+Confusion Matrix :
+ [[1150  152]
+ [ 113 6686]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.91      0.88      0.90      1302
+         1.0       0.98      0.98      0.98      6799
+
+    accuracy                           0.97      8101
+   macro avg       0.94      0.93      0.94      8101
+weighted avg       0.97      0.97      0.97      8101
+
+**********************************************************************
+
+#########################################################################
+		RandomForest Classifier
+##########################################################################
+
+Testing Data Evalution
+
+Accuracy Score :  0.9664363277393879
+**********************************************************************
+Confusion Matrix :
+ [[ 278   47]
+ [  21 1680]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.93      0.86      0.89       325
+         1.0       0.97      0.99      0.98      1701
+
+    accuracy                           0.97      2026
+   macro avg       0.95      0.92      0.94      2026
+weighted avg       0.97      0.97      0.97      2026
+
+**********************************************************************
+
+-- Training
+
+
+Accuracy Score :  1.0
+**********************************************************************
+Confusion Matrix :
+ [[1302    0]
+ [   0 6799]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00      1302
+         1.0       1.00      1.00      1.00      6799
+
+    accuracy                           1.00      8101
+   macro avg       1.00      1.00      1.00      8101
+weighted avg       1.00      1.00      1.00      8101
+
+**********************************************************************
+
+#################################################################################
+			Randomforest with Hyperparameter Tuning
+#################################################################################
+
+-- Testing Data Evalution
+
+Accuracy Score :  0.9644619940769991
+**********************************************************************
+Confusion Matrix :
+ [[ 275   50]
+ [  22 1679]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       0.93      0.85      0.88       325
+         1.0       0.97      0.99      0.98      1701
+
+    accuracy                           0.96      2026
+   macro avg       0.95      0.92      0.93      2026
+weighted avg       0.96      0.96      0.96      2026
+
+**********************************************************************
+
+-- Training Data Evalution
+
+Accuracy Score :  0.9967905196889273
+**********************************************************************
+Confusion Matrix :
+ [[1281   21]
+ [   5 6794]]
+**********************************************************************
+Classification Report : 
+               precision    recall  f1-score   support
+
+         0.0       1.00      0.98      0.99      1302
+         1.0       1.00      1.00      1.00      6799
+
+    accuracy                           1.00      8101
+   macro avg       1.00      0.99      0.99      8101
+weighted avg       1.00      1.00      1.00      8101
+
+**********************************************************************
+
+
+## Accuracy table 
+
+					testing accuracy 		training accuracy		difference
+1. Logistic Regression				0.8706				0.8758			   0.0052
+2. Decision Tree				0.9378				1.0			   0.0622
+3. DT Hyperparameter tuning			0.9476				0.9728			   0.0252
+4. DT Prunung					0.9496				0.9672			   0.0176
+5. Random forest				0.9664				1.0			   0.0336
+6. Random Forest hyperparameter			0.9644				0.9967			   0.0323
+
+## conclusion:
+	Decision tree by using Pruning give good efficience as well as low bias and low 
+so we consider DT classifier with pruning for final model training.
