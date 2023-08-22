@@ -12,6 +12,5 @@ to understand the underlying causes of churn.
 
 
 # Conclusion:
-	Decision tree by using Pruning give good efficience as well as low bias and low 
-so we consider DT classifier with pruning for final model training.
+Using pruning in a decision tree yields not only enhanced efficiency but also reduced bias and variance. Therefore, we have chosen to employ a decision tree classifier with pruning for our final model training.
 
